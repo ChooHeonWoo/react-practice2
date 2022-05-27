@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
 import styled from "styled-components";
 
 interface ContainerProps {
@@ -20,6 +22,9 @@ interface CircleProps {
 }
 
 function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) {
+  const [counter, setCounter] = useState(0);
+  // 초기값에 숫자를 넣으니 TS에서 counter 값은 number라고 추론을 함.
+  setCounter(2);
   return (
     <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
       {text}
