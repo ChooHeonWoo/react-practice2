@@ -2,25 +2,18 @@ import styled from "styled-components";
 const Father = styled.div`
   display: flex;
 `;
-const Box = styled.div`
-  background-color: ${(props) => props.bgColor};
-  width: 100px;
-  height: 100px;
+const Input = styled.input.attrs({ required: true, minLength: 10 })`
+  background-color: tomato;
 `;
-const Circle = styled(Box)`
-  // Box의 속성을 그대로 들고옴
-  border-radius: 50px;
-`;
-const Text = styled.span`
-  color: white;
-`;
+
 function App() {
   return (
-    <Father>
-      <Box bgColor="teal">
-        <Text>Hello</Text>
-      </Box>
-      <Circle bgColor="tomato"></Circle>
+    <Father as="header">
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
     </Father>
   );
 }
