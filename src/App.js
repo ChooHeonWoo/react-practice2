@@ -14,6 +14,9 @@ const rotationAnimation = keyframes`
   border-radius: 0px;
 }
 `;
+const Emoji = styled.span`
+  font-size: 36px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,13 +29,9 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  span {
-    font-size: 36px;
+  ${Emoji} {
     &:hover {
-      font-size: 50px;
-    }
-    &:active {
-      opacity: 0;
+      font-size: 70px;
     }
   }
 `;
@@ -40,8 +39,9 @@ function App() {
   return (
     <Wrapper>
       <Box>
-        <span>🤩</span>
+        <Emoji as="p">🤩</Emoji>
       </Box>
+      <Emoji>🔥</Emoji>
     </Wrapper>
   );
 }
