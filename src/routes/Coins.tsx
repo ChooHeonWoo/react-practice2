@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import icons from "base64-cryptocurrency-icons";
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -24,7 +25,9 @@ const Coin = styled.li`
   margin-bottom: 10px;
   a {
     transition: color 0.2s ease-in;
-    display: block;
+    display: flex;
+    padding: 20px;
+    align-items: center;
   }
 
   &:hover {
@@ -42,6 +45,12 @@ const Title = styled.h1`
 const Loader = styled.span`
   text-align: center;
   display: block;
+`;
+
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 `;
 
 interface CoinInterface {
@@ -77,7 +86,10 @@ function Coins() {
         <CoinList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+              <Link to={`/${coin.id}`} state={coin.name}>
+                <Img src={icons[coin.symbol.toUpperCase()]?.icon} />
+                {coin.name} &rarr;
+              </Link>
             </Coin>
           ))}
         </CoinList>
