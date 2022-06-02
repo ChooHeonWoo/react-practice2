@@ -53,14 +53,23 @@ function Chart() {
               show: false,
             },
             xaxis: {
-              labels: {
-                show: false,
+              type: "datetime",
+              categories: data?.map((price) => price.time_open),
+              labels: { show: false },
+              axisTicks: { show: false },
+              axisBorder: { show: false },
+            },
+            fill: {
+              type: "gradient",
+              gradient: {
+                gradientToColors: ["#0984e3"],
+                stops: [0, 100],
               },
-              axisTicks: {
-                show: false,
-              },
-              axisBorder: {
-                show: false,
+            },
+            colors: ["#00b894"],
+            tooltip: {
+              y: {
+                formatter: (value) => `$ ${value.toFixed(2)}`,
               },
             },
           }}
