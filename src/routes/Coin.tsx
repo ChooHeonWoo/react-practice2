@@ -82,6 +82,18 @@ const Tab = styled.span<{ isActive: boolean }>`
   }
 `;
 
+const Back = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 5px;
+  a {
+    background-color: black;
+    padding: 5px;
+  }
+`;
+
 interface RouteParams {
   coinId: string;
 }
@@ -232,6 +244,9 @@ function Coin() {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
+          <Back>
+            <Link to={`/`}></Link>
+          </Back>
           <Outlet />
         </>
       )}
