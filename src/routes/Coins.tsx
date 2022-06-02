@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import icons from "base64-cryptocurrency-icons";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
+import { Helmet } from "react-helmet";
+
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -67,9 +69,11 @@ interface ICoin {
 
 function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-  console.log(isLoading, data);
   return (
     <Container>
+      <Helmet>
+        <title>코인</title>
+      </Helmet>
       <Header>
         <Title>코인</Title>
       </Header>
