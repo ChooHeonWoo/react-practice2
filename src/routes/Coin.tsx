@@ -6,6 +6,7 @@ import {
   Outlet,
   Link,
   useMatch,
+  useNavigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ import Chart from "./Chart";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet";
+import PageBackImg from "../img/back.png";
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
@@ -82,15 +84,15 @@ const Tab = styled.span<{ isActive: boolean }>`
   }
 `;
 
-const Back = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  border-radius: 5px;
-  a {
-    background-color: black;
-    padding: 5px;
+const Back = styled.img`
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  :hover {
+    filter: opacity(0.5) drop-shadow(0 0 0 #55efc4);
   }
 `;
 
@@ -175,6 +177,10 @@ function Coin() {
       refetchInterval: 5000,
     }
   );
+  const navigate = useNavigate();
+  const onClickImg = () => {
+    navigate("/");
+  };
   /* const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
@@ -200,6 +206,7 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
+      <Back onClick={onClickImg} src={PageBackImg}></Back>
       <Header>
         <Title>
           <>
@@ -244,9 +251,7 @@ function Coin() {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
-          <Back>
-            <Link to={`/`}></Link>
-          </Back>
+
           <Outlet />
         </>
       )}
