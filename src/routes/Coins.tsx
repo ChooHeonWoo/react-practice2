@@ -5,6 +5,8 @@ import icons from "base64-cryptocurrency-icons";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
+import { isDarkAtom } from "./atoms";
+import { useSetRecoilState } from "recoil";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -23,7 +25,7 @@ const CoinList = styled.ul``;
 
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 10px;
@@ -67,7 +69,13 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {}
+
+function Coins({}: ICoinsProps) {
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
+  /*   value를 설정(set)하는 function
+  react의 setState와 같은 방식으로 작동함 */
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
     <Container>
@@ -76,6 +84,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

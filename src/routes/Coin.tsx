@@ -161,7 +161,9 @@ interface PriceData {
   };
 }
 
-function Coin() {
+interface ICoinProps {}
+
+function Coin({}: ICoinProps) {
   const { coinId } = useParams<keyof RouteParams>() as RouteParams;
   const { state } = useLocation() as LocationParams;
   const priceMatch = useMatch("/:coinId/price");
@@ -251,7 +253,6 @@ function Coin() {
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
-
           <Outlet />
         </>
       )}
